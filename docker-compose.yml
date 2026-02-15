@@ -1,6 +1,6 @@
 services:
   yaoyingying:
-    image: wordpress:8.5-apache
+    image: wordpress:php8.5-apache
     restart: always
     ports:
       - "8081:80"
@@ -12,7 +12,7 @@ services:
       WORDPRESS_DB_NAME: db_yaoyingying
 
   hugoworld:
-    image: wordpress:8.5-apache
+    image: wordpress:php8.5-apache
     restart: always
     ports:
       - "8082:80"
