@@ -1,0 +1,37 @@
+services:
+  yaoyingying:
+    image: wordpress:8.5-apache
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      WP_HOME: https://www.yaoyingying.com
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wp_yaoyingying
+      WORDPRESS_DB_PASSWORD: wp_pass1
+      WORDPRESS_DB_NAME: db_yaoyingying
+
+  hugoworld:
+    image: wordpress:8.5-apache
+    restart: always
+    ports:
+      - "8082:80"
+    environment:
+      WP_HOME: https://www.hugo-world.com
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wp_hugoworld
+      WORDPRESS_DB_PASSWORD: wp_pass2
+      WORDPRESS_DB_NAME: db_hugoworld
+
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - db-data:/var/lib/mysql
+      - ./mysql-init:/docker-entrypoint-initdb.d
+
+volumes:
+  wordpress:
+  db-data:
